@@ -44,6 +44,7 @@ class _PokemonDetailPageState extends State<PokemonDetailPage> {
         child: const Icon(Icons.search),
       ),
       body: Column(
+
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'disease_data.dart';
 import 'pokemon_detail_page.dart';
 import 'pokemon_data.dart';
 
