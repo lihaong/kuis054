@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kuispraktikum/pokemon_data.dart';
 import 'pokemon_data.dart';
 
+
 class PokemonDetailPage extends StatefulWidget {
   final PokemonData pokemon;
 
@@ -38,127 +39,119 @@ class _PokemonDetailPageState extends State<PokemonDetailPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+
           // Add your onPressed code here!
         },
         backgroundColor: Colors.red,
         child: const Icon(Icons.search),
       ),
-      body: Column(
-
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-
-          Container(
-            height: MediaQuery.of(context).size.height/3,
-            alignment: Alignment.topCenter,
-            child: Image.network(
-              widget.pokemon.image,
-              fit: BoxFit.scaleDown,
-            ),
-          ),
-
-          Container(
-            height: 30,
-            alignment: Alignment.topCenter,
-            child: Text(
-              widget.pokemon.name,
-              style: const TextStyle(
-                fontSize: 20,fontWeight: FontWeight.bold,
-              ),
-              textAlign: TextAlign.center,
-            ),
-          ),
-          Text(
-            "Type",
-            style: const TextStyle(
-              fontSize: 14,fontWeight: FontWeight.bold,
-            ),
-            textAlign: TextAlign.center,
-          ),
-          Container(
-            width: MediaQuery.of(context).size.width,
-            height: 30,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: widget.pokemon.type.length,
-              itemBuilder: (BuildContext context, int index) => Container(
-                child : Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text("[ "+widget.pokemon.type[index]+"]"),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          Text(
-            "Weakness",
-            style: const TextStyle(
-              fontSize: 14,fontWeight: FontWeight.bold,
-            ),
-            textAlign: TextAlign.center,
-          ),
-          Container(
-            width: 1000,
-            height: 30,
-            alignment: Alignment.center,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: widget.pokemon.weakness.length,
-              itemBuilder: (BuildContext context, int index) => Container(
-                child : Center(
-                  child : Text("[ "+widget.pokemon.weakness[index]+"]"),
-                ),
-              ),
-            ),
-          ),
-          Text(
-            "Previous Evolution",
-            style: const TextStyle(
-              fontSize: 14,fontWeight: FontWeight.bold,
-            ),
-            textAlign: TextAlign.center,
-          ),
-          Container(
-            width: 1000,
-            height: 30,
-            alignment: Alignment.center,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: widget.pokemon.prevEvolution.length,
-              itemBuilder: (BuildContext context, int index) => Container(
-                child : Center(
-                  child : Text("[ "+widget.pokemon.prevEvolution[index]+"]"),
-                ),
-              ),
-            ),
-          ),
-          Text(
-            "Next Evolution",
-            style: const TextStyle(
-              fontSize: 14,fontWeight: FontWeight.bold,
-            ),
-            textAlign: TextAlign.center,
-          ),
-          Container(
-            width: 1000,
-            height: 30,
-            alignment: Alignment.center,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: widget.pokemon.nextEvolution.length,
-              itemBuilder: (BuildContext context, int index) => Container(
-                child : Center(
-                  child : Text("[ "+widget.pokemon.nextEvolution[index]+"]"),
-                ),
+      body: ListView(children: [
+        Column(
+          children: [
+            Center(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 16.0),
+                    child: Image.network(
+                      widget.pokemon.image,
+                      width: 300,
+                    ),
+                  ),
+                  Text(
+                    widget.pokemon.name,
+                    style:
+                    TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
+                  ),
+                  Center(
+                      child: Column(children: <Widget>[
+                        Container(
+                          decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(15)),
+                          ),
+                          margin: EdgeInsets.all(20),
+                          child: Table(
+                            columnWidths: {
+                              0: FlexColumnWidth(50),
+                              1: FlexColumnWidth(300),
+                            },
+                            children: [
+                              TableRow(children: [
+                                Column(
+                                  children: [Text("Type", style: TextStyle(fontWeight: FontWeight.bold))],
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                ),
+                              ]),
+                              TableRow(children: [
+                                Column(
+                                  children: [Text( "[ " + widget.pokemon.type.join(", ") + " ]")],
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                ),
+                              ]),
+                              TableRow(children: [
+                                Column(
+                                  children: [Text(" ")],
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                ),
+                              ]),
+                              TableRow(children: [
+                                Column(
+                                  children: [Text("Weakness", style: TextStyle(fontWeight: FontWeight.bold))],
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                ),
+                              ]),
+                              TableRow(children: [
+                                Column(
+                                  children: [Text("[ " +widget.pokemon.weakness.join(", ")+ " ]")],
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                ),
+                              ]),
+                              TableRow(children: [
+                                Column(
+                                  children: [Text(" ")],
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                ),
+                              ]),
+                            TableRow(children: [
+                              Column(
+                                children: [Text("Previous Evolution", style: TextStyle(fontWeight: FontWeight.bold))],
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                              ),
+                            ]),
+                              TableRow(children: [
+                                Column(
+                                  children: [Text("[ " +widget.pokemon.prevEvolution.join(", ")+ " ]")],
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                ),
+                              ]),
+                              TableRow(children: [
+                                Column(
+                                  children: [Text(" ")],
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                ),
+                              ]),
+                              TableRow(children: [
+                                Column(
+                                  children: [Text("Next Evolution", style: TextStyle(fontWeight: FontWeight.bold))],
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                ),
+                              ]),
+                              TableRow(children: [
+                                Column(
+                                  children: [Text("[ " +widget.pokemon.nextEvolution.join(", ")+" ]")],
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                ),
+                              ]),
+                            ],
+                          ),
+                        ),
+                      ])),
+                ],
               ),
             ),
-          ),
-
-        ],
-      ),
-    );
+          ],
+        )
+      ]));
   }
 }
 
